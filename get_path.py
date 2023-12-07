@@ -22,18 +22,27 @@ def make_current_dir():
         os.mkdir(result_path)
     if not os.path.isdir(result_tmp_path):
         os.mkdir(result_tmp_path)
-    if is_telemetr_check:
-        if not os.path.isdir(result_tmp_telemetr_path):
-            os.mkdir(result_tmp_telemetr_path)
-    if is_tgstat_check:
-        if not os.path.isdir(result_tmp_tgstat_path):
-            os.mkdir(result_tmp_tgstat_path)
-    if is_telega_check:
-        if not os.path.isdir(result_tmp_telega_path):
-            os.mkdir(result_tmp_telega_path)
+    # if is_telemetr_check:
+    #     if not os.path.isdir(result_tmp_telemetr_path):
+    #         os.mkdir(result_tmp_telemetr_path)
+    # if is_tgstat_check:
+    #     if not os.path.isdir(result_tmp_tgstat_path):
+    #         os.mkdir(result_tmp_tgstat_path)
+    # if is_telega_check:
+    #     if not os.path.isdir(result_tmp_telega_path):
+    #         os.mkdir(result_tmp_telega_path)
 
 
 def clear_tmp_dir():
     if os.path.isdir(result_tmp_path):
         shutil.rmtree(result_tmp_path)
         os.mkdir(result_tmp_path)
+
+
+def make_chanel_dir(chanel_name):
+    result_out_path = os.path.join(result_tmp_path, chanel_name)
+
+    if not os.path.isdir(result_out_path):
+        os.mkdir(result_out_path)
+
+    return result_out_path
