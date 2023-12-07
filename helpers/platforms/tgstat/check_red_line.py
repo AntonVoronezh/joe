@@ -1,7 +1,6 @@
 from bs4 import BeautifulSoup
 
-from get_path import result_tmp_path
-from helpers.shared.make_img_sign import get_image
+from helpers.shared.save_screen_with_sign import save_screen_with_sign
 from settings import is_tgstat_check_red_line, is_tgstat_save_screenshot
 from helpers.shared.save_in_txt_file import add_more_line_in_txt_file
 
@@ -25,5 +24,4 @@ def check_red_line(driver, result_out_path):
         add_more_line_in_txt_file(line=result, folder_path=result_out_path, file_name=file_name)
 
         if is_tgstat_save_screenshot:
-            driver.save_screenshot(f'{result_tmp_path}/img.png')
-            get_image(path_out=f'{result_out_path}/{file_name}')
+            save_screen_with_sign(driver=driver, result_out_path=result_out_path, file_name=file_name)

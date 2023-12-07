@@ -4,7 +4,7 @@ from get_path import result_tmp_path
 from helpers.shared.get_today import get_today
 
 
-def get_image(path_out):
+def make_image_sign(path_out):
     im = Image.open(f'{result_tmp_path}/img.png')
 
     draw = ImageDraw.Draw(im)
