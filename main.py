@@ -5,11 +5,12 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 
-from get_path import make_current_dir, make_chanel_dir
+from get_path import make_current_dir, make_chanel_dir, result_path, result_tmp_path
 from helpers.platforms.telega.main import check_channel_in_telega
 from helpers.platforms.telemetr.main import check_channel_in_telemetr
 from helpers.platforms.tgstat.main import check_channel_in_tgstat
 from helpers.shared.get_arr_from_txt_file import get_arr_from_txt_file
+from helpers.shared.save_in_txt_file import add_more_line_in_txt_file
 from helpers.shared.time_lambda import time_lambda
 
 # chrome_options = Options()
@@ -25,15 +26,24 @@ make_current_dir()
 
 
 start_time = datetime.now()
-channel_names = get_arr_from_txt_file(file_name='channel_names')
+channel_names = get_arr_from_txt_file(file_path=result_path, file_name='channel_names')
+done_channel_names = get_arr_from_txt_file(file_path=result_tmp_path, file_name='done')
+
+print(Fore.BLUE + f'START' + Fore.RESET)
 
 for i, channel_name in enumerate(channel_names):
-    print(i, channel_name)
+    if channel_name in done_channel_names:
+        print(Fore.YELLOW + f'Данные {channel_name} уже есть' + Fore.RESET)
+        continue
 
     result_out_path = make_chanel_dir(channel_name)
 
     check_channel_in_telemetr(driver=driver, channel_name=channel_name, result_out_path=result_out_path)
     check_channel_in_tgstat(driver=driver, channel_name=channel_name, result_out_path=result_out_path)
     check_channel_in_telega(driver=driver, channel_name=channel_name, result_out_path=result_out_path)
+
+    add_more_line_in_txt_file(line=channel_name, folder_path=result_tmp_path, file_name='done')
+
+    print(i, channel_name, flush=True)
 
 time_lambda(start_time=start_time)

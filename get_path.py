@@ -12,9 +12,9 @@ telega_folder_name = 'telega'
 realpath = os.path.dirname(os.path.realpath(__file__))
 result_path = os.path.join(realpath, result_folder_name)
 result_tmp_path = os.path.join(result_path, tmp_folder_name)
-result_tmp_telemetr_path = os.path.join(result_tmp_path, telemetr_folder_name)
-result_tmp_tgstat_path = os.path.join(result_tmp_path, tgstat_folder_name)
-result_tmp_telega_path = os.path.join(result_tmp_path, telega_folder_name)
+# result_tmp_telemetr_path = os.path.join(result_tmp_path, telemetr_folder_name)
+# result_tmp_tgstat_path = os.path.join(result_tmp_path, tgstat_folder_name)
+# result_tmp_telega_path = os.path.join(result_tmp_path, telega_folder_name)
 
 
 def make_current_dir():
@@ -22,15 +22,6 @@ def make_current_dir():
         os.mkdir(result_path)
     if not os.path.isdir(result_tmp_path):
         os.mkdir(result_tmp_path)
-    # if is_telemetr_check:
-    #     if not os.path.isdir(result_tmp_telemetr_path):
-    #         os.mkdir(result_tmp_telemetr_path)
-    # if is_tgstat_check:
-    #     if not os.path.isdir(result_tmp_tgstat_path):
-    #         os.mkdir(result_tmp_tgstat_path)
-    # if is_telega_check:
-    #     if not os.path.isdir(result_tmp_telega_path):
-    #         os.mkdir(result_tmp_telega_path)
 
 
 def clear_tmp_dir():
