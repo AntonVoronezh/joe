@@ -8,13 +8,7 @@ from selenium.webdriver.chrome.options import Options
 from helpers.platforms.telemetr.check_red_line import check_red_line
 from settings import is_telemetr_check
 
-chrome_options = Options()
-chrome_options.add_experimental_option("debuggerAddress", "127.0.0.1:9222")
-service = Service(executable_path="C:\webdrivers\chromedriver.exe")
-driver = webdriver.Chrome(service=service, options=chrome_options)
-
-
-def check_channel_in_telemetr(channel_name):
+def check_channel_in_telemetr(driver, channel_name):
     if is_telemetr_check:
         current_link = f'https://telemetr.me/{channel_name}'
         driver.get(current_link)
