@@ -10,7 +10,7 @@ from helpers.shared.save_in_txt_file import add_more_line_in_txt_file
 
 
 def check_title_history(driver, result_out_path):
-    file_name = '2_title_history'
+    file_name = '1_title_history'
 
     if is_telemetr_check_title_history:
         driver.find_element(By.XPATH, '//a[@data-do="show_modal_title_history"]').click()
@@ -36,11 +36,12 @@ def check_title_history(driver, result_out_path):
 
             title_history_arr.append(out_arr)
 
-        current_title = title_history_arr[0][1]
-
-        for el in title_history_arr:
-            data = el[0]
-            title = el[1]
+        current_title = ''
+        for i, elem in enumerate(title_history_arr):
+            data = elem[0]
+            title = elem[1]
+            if i == 0:
+                current_title = title
             similarity = check_similarity(current_title, title)
             line = f'{data}***{title}***{similarity}'
 
