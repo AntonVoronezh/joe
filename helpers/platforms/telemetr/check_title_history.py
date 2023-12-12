@@ -1,0 +1,54 @@
+import time
+
+from bs4 import BeautifulSoup
+from selenium.webdriver.common.by import By
+
+from helpers.shared.check_similarity import check_similarity
+from helpers.shared.save_screen_with_sign import save_screen_with_sign
+from settings import is_telemetr_save_screenshot, is_telemetr_check_title_history
+from helpers.shared.save_in_txt_file import add_more_line_in_txt_file
+
+
+def check_title_history(driver, result_out_path):
+    file_name = '2_title_history'
+
+    if is_telemetr_check_title_history:
+        driver.find_element(By.XPATH, '//a[@data-do="show_modal_title_history"]').click()
+        time.sleep(2)
+        modal_html = driver.find_elements(By.CSS_SELECTOR, 'div.modal-content')
+
+        # print(len(ff))
+        # for el in ff:
+        #     print(el.get_attribute("outerHTML"))
+
+        html = modal_html[2].get_attribute("outerHTML")
+        soup = BeautifulSoup(html, 'lxml')
+
+        title_history_tr = soup.find('tbody').find_all('tr')
+
+        title_history_arr = []
+        for el in title_history_tr:
+            out_arr = []
+            data = el.find_all('td')[0].text
+            title = el.find_all('td')[1].text
+            out_arr.append(data)
+            out_arr.append(title)
+
+            title_history_arr.append(out_arr)
+
+        current_title = title_history_arr[0][1]
+
+        for el in title_history_arr:
+            data = el[0]
+            title = el[1]
+            similarity = check_similarity(current_title, title)
+            line = f'{data}***{title}***{similarity}'
+
+            add_more_line_in_txt_file(line=line, folder_path=result_out_path, file_name=file_name)
+
+        if is_telemetr_save_screenshot:
+            save_screen_with_sign(driver=driver, result_out_path=result_out_path, file_name=file_name)
+
+        modal_html[2].find_element(By.CSS_SELECTOR, 'button.btn.btn-secondary').click()
+
+

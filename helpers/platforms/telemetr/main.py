@@ -1,11 +1,5 @@
-from datetime import datetime
-
-from colorama import Fore
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
-
 from helpers.platforms.telemetr.check_red_line import check_red_line
+from helpers.platforms.telemetr.check_title_history import check_title_history
 from settings import is_telemetr_check
 
 def check_channel_in_telemetr(driver, channel_name, result_out_path):
@@ -15,4 +9,6 @@ def check_channel_in_telemetr(driver, channel_name, result_out_path):
 
         # проверка на красную метку
         check_red_line(driver=driver, result_out_path=result_out_path)
+        # проверка истории названий
+        check_title_history(driver=driver, result_out_path=result_out_path)
 
