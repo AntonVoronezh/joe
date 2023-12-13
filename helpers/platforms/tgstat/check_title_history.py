@@ -1,6 +1,7 @@
 import time
 
 from bs4 import BeautifulSoup
+from colorama import Fore
 from selenium.webdriver.common.by import By
 
 from helpers.shared.check_similarity import check_similarity
@@ -14,6 +15,7 @@ def check_title_history(driver, result_out_path, channel_name):
     current_link = f'https://tgstat.ru/channel/{channel_name}/history'
 
     if is_tgstat_check_title_history:
+        print(Fore.GREEN + f'check_title_history' + Fore.RESET, flush=True)
         driver.get(current_link)
         driver.find_element(By.XPATH, '//a[@href="#h-title"]').click()
         time.sleep(1)

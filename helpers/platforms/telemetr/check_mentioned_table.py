@@ -1,3 +1,5 @@
+from colorama import Fore
+
 from helpers.platforms.telemetr.mentioned_table.extract_data_from_who_mentioned import extract_data_from_who_mentioned
 from helpers.platforms.telemetr.mentioned_table.get_mentioned_table import get_mentioned_table
 from helpers.shared.save_in_txt_file import add_more_line_in_txt_file
@@ -2195,6 +2197,7 @@ def check_mentioned_table(driver, result_out_path):
     file_name = '1_mentioned_table'
 
     if is_telemetr_check_mentioned_table:
+        print(Fore.GREEN + f'check_mentioned_table' + Fore.RESET, flush=True)
         mentioned_table = get_mentioned_table(driver=driver, result_out_path=result_out_path, file_name=file_name)
         # mentioned_table = ddd
         data = extract_data_from_who_mentioned(mentioned_table=mentioned_table)

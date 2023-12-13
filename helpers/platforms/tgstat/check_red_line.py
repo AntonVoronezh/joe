@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+from colorama import Fore
 
 from helpers.shared.save_screen_with_sign import save_screen_with_sign
 from settings import is_tgstat_check_red_line, is_tgstat_save_screenshot
@@ -9,6 +10,7 @@ def check_red_line(driver, result_out_path):
     file_name = '2_red_line'
 
     if is_tgstat_check_red_line:
+        print(Fore.GREEN + f'check_red_line' + Fore.RESET, flush=True)
         html = driver.page_source
 
         soup = BeautifulSoup(html, 'lxml')

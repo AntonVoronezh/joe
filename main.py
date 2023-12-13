@@ -29,7 +29,7 @@ start_time = datetime.now()
 channel_names = get_arr_from_txt_file(file_path=result_path, file_name='channel_names')
 done_channel_names = get_arr_from_txt_file(file_path=result_tmp_path, file_name='done')
 
-print(Fore.BLUE + f'START' + Fore.RESET)
+print(Fore.RED + f'START' + Fore.RESET)
 
 for i, channel_name in enumerate(channel_names):
     if channel_name in done_channel_names:
@@ -44,6 +44,6 @@ for i, channel_name in enumerate(channel_names):
 
     add_more_line_in_txt_file(line=channel_name, folder_path=result_tmp_path, file_name='done')
 
-    print(i, channel_name, flush=True)
+    print(Fore.RED + f'{i}, {channel_name}' + Fore.RESET, flush=True)
 
 time_lambda(start_time=start_time)

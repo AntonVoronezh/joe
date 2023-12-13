@@ -7,6 +7,7 @@ from settings import is_tgstat_check
 
 def check_channel_in_tgstat(driver, channel_name, result_out_path):
     if is_tgstat_check:
+        print(Fore.BLUE + f'tgstat' + Fore.RESET)
         current_link = f'https://tgstat.ru/channel/{channel_name}'
         driver.get(current_link)
 

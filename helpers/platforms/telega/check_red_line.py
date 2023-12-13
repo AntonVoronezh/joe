@@ -1,6 +1,7 @@
 import time
 
 from bs4 import BeautifulSoup
+from colorama import Fore
 
 from helpers.shared.save_screen_with_sign import save_screen_with_sign
 from settings import is_telega_check_exist, is_telega_save_screenshot
@@ -11,6 +12,7 @@ def check_exist(driver, result_out_path):
     file_name = 'is_exist'
 
     if is_telega_check_exist:
+        print(Fore.GREEN + f'check_exist' + Fore.RESET, flush=True)
         html = driver.page_source
 
         soup = BeautifulSoup(html, 'lxml')

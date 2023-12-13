@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+from colorama import Fore
 
 from helpers.shared.remove_from_text import remove_all_except_numbers
 from helpers.shared.save_screen_with_sign import save_screen_with_sign
@@ -10,6 +11,7 @@ def check_red_line(driver, result_out_path):
     file_name = '1_red_line'
 
     if is_telemetr_check_red_line:
+        print(Fore.GREEN + f'check_red_line' + Fore.RESET, flush=True)
         html = driver.page_source
 
         soup = BeautifulSoup(html, 'lxml')
