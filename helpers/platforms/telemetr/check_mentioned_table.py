@@ -1,10 +1,10 @@
 from colorama import Fore
 
+from get_path import mentioned_table_str, make_platform_in_chanel_dir, telemetr_folder_name
 from helpers.platforms.telemetr.mentioned_table.extract_data_from_who_mentioned import extract_data_from_who_mentioned
 from helpers.platforms.telemetr.mentioned_table.get_mentioned_table import get_mentioned_table
 from helpers.shared.save_in_txt_file import add_more_line_in_txt_file
 from settings import is_telemetr_check_mentioned_table
-
 
 ddd = '''
 <tr class="odd" role="row"><td style="overflow: hidden;"><div class="media">
@@ -2193,17 +2193,20 @@ ddd = '''
 </div></td><td class="text-center" style="max-width: 100px;"> <span class="kt-number kt-font-brand text-underlined" content="Показать упоминания анализируемого канала в этом" data-cid="1151652877" data-cidwhere="1175926935" data-do="show_mentions_where" data-html="true" data-placement="top" data-toggle="kt-tooltip"> 1 </span> <i class="fa flaticon2-quotation-mark kt-font-10 kt-label-font-color-2"></i></td><td> <div style="max-height: 50px; overflow-y: scroll;"> <i class="fa flaticon2-quotation-mark kt-font-10 kt-label-font-color-2"></i> <a data-day="2022-05-06" data-do="go_to_day" href="#" target="_blank">2022-05-06</a><br/></div></td></tr>
 '''
 
-def check_mentioned_table(driver, result_out_path):
-    file_name = '1_mentioned_table'
 
+def check_mentioned_table(driver, result_out_path):
     if is_telemetr_check_mentioned_table:
         print(Fore.GREEN + f'check_mentioned_table' + Fore.RESET, flush=True)
-        mentioned_table = get_mentioned_table(driver=driver, result_out_path=result_out_path, file_name=file_name)
+
+        file_name = mentioned_table_str
+        result_platform_in_chanel_path = make_platform_in_chanel_dir(result_out_path=result_out_path,
+                                                                     platform_name=telemetr_folder_name)
+
+        mentioned_table = get_mentioned_table(driver=driver, result_out_path=result_platform_in_chanel_path, file_name=file_name)
         # mentioned_table = ddd
         data = extract_data_from_who_mentioned(mentioned_table=mentioned_table)
 
         for line in data:
-            add_more_line_in_txt_file(line=line, folder_path=result_out_path, file_name=file_name)
-
+            add_more_line_in_txt_file(line=line, folder_path=result_platform_in_chanel_path, file_name=file_name)
 
 # check_mentioned_table()
