@@ -15,6 +15,7 @@ result_tmp_path = os.path.join(result_path, tmp_folder_name)
 result_out_path = os.path.join(result_path, out_folder_name)
 report_path = os.path.join(realpath, 'helpers', report_folder_name)
 
+
 def make_current_dir():
     if not os.path.isdir(result_path):
         os.mkdir(result_path)
@@ -54,3 +55,10 @@ def make_platform_in_chanel_dir(result_out_path, platform_name):
 red_line_str = 'red_line'
 check_title_str = 'check_title'
 mentioned_table_str = 'mentioned_table'
+
+h1_title_tag = '<!--h_1_title-->'
+yakor_tag = '<!--yakor-->'
+
+red_line_tag = '<!--red_line-->'
+title_history_tag = '<!--title_history-->'
+mentioned_table_tag = '<!--mentioned_table-->'
