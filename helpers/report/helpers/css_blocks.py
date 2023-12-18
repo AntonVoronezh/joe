@@ -9,7 +9,7 @@ section = '''
 
 yakor = '''
         <a href="#%section_id%" title="перейти к этой части">%section_name%</a>
-          <!--yakor-->
+
 '''
 
 img = '''

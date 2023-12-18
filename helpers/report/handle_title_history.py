@@ -2,17 +2,17 @@ import os
 import random
 import shutil
 
-from get_path import red_line_str, result_out_path
+from get_path import result_out_path, check_title_str
 from helpers.report.helpers.css_blocks import section, card, yakor, img
 from helpers.report.helpers.open_save_template import open_save_template
 from helpers.report.helpers.search_files import search_files
-from helpers.report.helpers.section_names import section_name_red_line
-from helpers.report.interpritators.red_line_interp import red_line_interp
+from helpers.report.helpers.section_names import section_name_title_history
+from helpers.report.interpritators.title_history_interp import title_history_interp
 
 
-def handle_red_line(folder_path, dst_template, channel_name):
+def handle_title_history(folder_path, dst_template, channel_name):
     folders = os.listdir(folder_path)
-    section_name = section_name_red_line
+    section_name = section_name_title_history
     section_id = str(random.randint(1, 1000000000000000))
 
     if len(folders):
@@ -23,7 +23,7 @@ def handle_red_line(folder_path, dst_template, channel_name):
     section_arr = []
 
     for folder in folders:
-        result_names = search_files(folder_path=folder_path, folder=folder, name=red_line_str)
+        result_names = search_files(folder_path=folder_path, folder=folder, name=check_title_str)
 
         if len(result_names) == 0:
             continue
@@ -49,7 +49,7 @@ def handle_red_line(folder_path, dst_template, channel_name):
         if text_name is not None:
             title_out = folder
 
-            interp_content = red_line_interp(folder_path=folder_path, folder=folder, text_name=text_name)
+            interp_content = title_history_interp(folder_path=folder_path, folder=folder, text_name=text_name)
 
             card_out_img = card.replace('<!--img-->', img_out)
             card_out_img_2 = card_out_img.replace('%img%', f'{folder}_{img_name}')
@@ -72,5 +72,5 @@ def handle_red_line(folder_path, dst_template, channel_name):
     section_out_2 = section_out_1.replace('%section_id%', section_id)
     section_out_3 = section_out_2.replace('%section_name%', section_name)
 
-    replace_arr = ['<!--red_line-->', section_out_3]
+    replace_arr = ['<!--title_history-->', section_out_3]
     open_save_template(dst_template=dst_template, replace_arr=replace_arr)
