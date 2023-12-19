@@ -8,7 +8,7 @@ from helpers.report.helpers.search_files import search_files
 from helpers.report.interpritators.red_line_interp import red_line_interp
 
 
-def get_cards(folder_path, channel_name, block_name, section_name, interp):
+def get_cards(random_id, folder_path, channel_name, block_name, section_name, interp):
     folders = os.listdir(folder_path)
 
     section_arr = []
@@ -32,7 +32,7 @@ def get_cards(folder_path, channel_name, block_name, section_name, interp):
 
         if img_name is not None:
             src = os.path.join(folder_path, folder, img_name)
-            dst = os.path.join(result_out_path, channel_name, f'{folder}_{img_name}')
+            dst = os.path.join(result_out_path, random_id, channel_name, f'{folder}_{img_name}')
             shutil.copyfile(src, dst)
 
             replaced_img_arr = [

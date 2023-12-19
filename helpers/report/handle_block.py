@@ -1,4 +1,5 @@
 import random
+import uuid
 
 from helpers.report.helpers.css_blocks import section
 from helpers.report.helpers.handle_section_yakor import handle_section_yakor
@@ -10,7 +11,7 @@ def handle_block(dst_template, section_name, tag_name, cards_arr):
     if len(cards_arr) == 0:
         return
 
-    section_id = str(random.randint(1, 1000000000000000))
+    section_id = str(uuid.uuid4())
 
     handle_section_yakor(dst_template=dst_template, section_id=section_id, section_name=section_name)
     cards_out = '\n'.join(cards_arr)

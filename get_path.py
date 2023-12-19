@@ -62,3 +62,8 @@ yakor_tag = '<!--yakor-->'
 red_line_tag = '<!--red_line-->'
 title_history_tag = '<!--title_history-->'
 mentioned_table_tag = '<!--mentioned_table-->'
+
+
+index_links_block_tag = '<!--index-links-block-->'
+
+
