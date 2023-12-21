@@ -30,15 +30,11 @@ def check_title_history(driver, result_out_path, channel_name):
 
         title_history_li = soup.find_all('li')
 
-        current_title = ''
         for i, elem in enumerate(title_history_li):
             div_arr = elem.find_all('div', class_='col')
             data = div_arr[0].text.strip()
             title = div_arr[1].text.strip()
-            if i == 0:
-                current_title = title
-            similarity = check_similarity(current_title, title)
-            line = f'{data}***{title}***{similarity}'
+            line = f'{data}***{title}'
 
             add_more_line_in_txt_file(line=line, folder_path=result_platform_in_chanel_path, file_name=file_name)
 

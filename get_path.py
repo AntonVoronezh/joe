@@ -20,6 +20,7 @@ def make_current_dir():
     if not os.path.isdir(result_path):
         os.mkdir(result_path)
     if not os.path.isdir(result_tmp_path):
+        print(1111111)
         os.mkdir(result_tmp_path)
     if not os.path.isdir(result_out_path):
         os.mkdir(result_out_path)

@@ -5,7 +5,6 @@ from get_path import result_out_path
 from helpers.report.helpers.css_blocks import card, img
 from helpers.report.helpers.replace_text import replace_text
 from helpers.report.helpers.search_files import search_files
-from helpers.report.interpritators.red_line_interp import red_line_interp
 
 
 def get_cards(random_id, folder_path, channel_name, block_name, section_name, interp):
@@ -40,6 +39,7 @@ def get_cards(random_id, folder_path, channel_name, block_name, section_name, in
             ]
             img_out = replace_text(block=img, replaced_arr=replaced_img_arr)
 
+        replaced_arr = []
         if text_name is not None:
             interp_content = interp(folder_path=folder_path, folder=folder, text_name=text_name)
             replaced_arr = [
@@ -50,6 +50,7 @@ def get_cards(random_id, folder_path, channel_name, block_name, section_name, in
                 ('%section_name%', section_name),
                 ('%content%', interp_content)
             ]
+
         section_element = replace_text(block=card, replaced_arr=replaced_arr)
         section_arr.append(section_element)
 

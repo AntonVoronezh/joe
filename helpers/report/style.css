@@ -124,6 +124,8 @@ color: #000;
 
 .card {
     padding: 10px;
+    flex: 1;
+    width: 100%;
 }
 
 .section {

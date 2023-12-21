@@ -25,24 +25,24 @@ def make_report():
 
         handle_page_title(dst_template=dst_template, channel_name=channel_name)
 
-        # red_line
-        cards_red_line_arr = get_cards(random_id=random_id, folder_path=folder_path, channel_name=channel_name, block_name=red_line_str,
-                              section_name=section_name_red_line, interp=red_line_interp)
-        handle_block(dst_template=dst_template, section_name=section_name_red_line, tag_name=red_line_tag, cards_arr=cards_red_line_arr)
-
-
+        # # red_line
+        # cards_red_line_arr = get_cards(random_id=random_id, folder_path=folder_path, channel_name=channel_name, block_name=red_line_str,
+        #                       section_name=section_name_red_line, interp=red_line_interp)
+        # handle_block(dst_template=dst_template, section_name=section_name_red_line, tag_name=red_line_tag, cards_arr=cards_red_line_arr)
+        #
+        #
         # # title_history
         # cards_title_history_arr = get_cards(random_id=random_id, folder_path=folder_path, channel_name=channel_name, block_name=check_title_str,
         #                                section_name=section_name_title_history, interp=title_history_interp)
         # handle_block(dst_template=dst_template, section_name=section_name_title_history, tag_name=title_history_tag,
         #              cards_arr=cards_title_history_arr)
-        #
-        #
-        # # mentioned_table
-        # cards_mentioned_table_arr = get_cards(random_id=random_id, folder_path=folder_path, channel_name=channel_name, block_name=mentioned_table_str,
-        #                                section_name=section_name_mentioned_table, interp=mentioned_table_interp)
-        # handle_block(dst_template=dst_template, section_name=section_name_mentioned_table, tag_name=mentioned_table_tag,
-        #              cards_arr=cards_mentioned_table_arr)
+
+
+        # mentioned_table
+        cards_mentioned_table_arr = get_cards(random_id=random_id, folder_path=folder_path, channel_name=channel_name, block_name=mentioned_table_str,
+                                       section_name=section_name_mentioned_table, interp=mentioned_table_interp)
+        handle_block(dst_template=dst_template, section_name=section_name_mentioned_table, tag_name=mentioned_table_tag,
+                     cards_arr=cards_mentioned_table_arr)
 
 
 
@@ -57,12 +57,12 @@ def make_index():
         a_href_arr.append(a_href)
         a_href_out = '\n'.join(a_href_arr)
 
-        replaced_element_arr = [
-            (index_links_block_tag, a_href_out)
-        ]
-        open_save_template(dst_template=dst_index_template, replaced_element_arr=replaced_element_arr)
+    replaced_element_arr = [
+        (index_links_block_tag, a_href_out)
+    ]
+    open_save_template(dst_template=dst_index_template, replaced_element_arr=replaced_element_arr)
 
 
 
 make_report()
-make_index()
+# make_index()
