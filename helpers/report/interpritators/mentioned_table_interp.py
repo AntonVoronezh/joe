@@ -1,8 +1,13 @@
 import os
 
-from helpers.shared.check_similarity import check_similarity, check_jaccard
+from get_path import total_info_str
+from helpers.shared.make_union_arr import make_union_arr
+from helpers.shared.words.check_similarity import check_similarity, check_jaccard
 from helpers.shared.get_arr_from_txt_file import get_arr_from_txt_file
+from helpers.shared.words.get_assotiation_for_word import get_arr_assotiation_for_word
+from helpers.shared.words.get_morfology_word import get_words_normal_form
 from helpers.shared.remove_from_text import remove_all_in_title
+from helpers.shared.words.prepare_words import prepare_words
 
 
 def mentioned_table_interp(folder_path, folder, text_name):
@@ -64,37 +69,28 @@ def mentioned_table_interp(folder_path, folder, text_name):
         text_out_pdp_count = text_out_pdp_count + f'<p class="items">{i + 1}. [{raz} раз, {pdp_count} пдп] {name} - {title} ({data})<p>'
 
     #  на нетематические каналы
-    percent_similarity = 0.4
     not_tema_arr = []
     tema_arr = []
+
+    opis_plus_title_from_file_arr = get_arr_from_txt_file(file_path=file_path, file_name=total_info_str)
+    opis_plus_title_from_file = opis_plus_title_from_file_arr[0].split(' ')
+    assotiation_for_opis_plus_title_prepare = prepare_words(words=opis_plus_title_from_file)
+    opis_plus_title_normal_forms = get_words_normal_form(words=assotiation_for_opis_plus_title_prepare)
+    assotiation_for_opis_plus_title = get_arr_assotiation_for_word(arr=opis_plus_title_normal_forms)
 
     for elem in info_from_file:
         is_banned, name, title, pdp_count, raz, data = tuple(elem.split('***'))
 
-        # title_removed_ru = remove_all_ru_buk(text=title, dop=['|', '_', ' ', ',', '!', ':', ';', '/'])
         title_removed = remove_all_in_title(text=title, dop=[])
-        aaaaaaaaaa = 'Будете здоровы'  # 77777777777777777777777777777777777777777777777777777777
-        aaaaaaaaa_2 = '''
-        Все самое лучшее для
-☘️Здоровья
-💄Красоты
-🍎Здорового питания
-👨‍👩‍👦Гармонии семейных отношений
-💁‍♀️Советов хозяюшкам
-Админ: @nikolaeva_rita
-Купить рекламу: https://telega.in/c/budite_zdorovi 
-        '''
+        title_removed_arr = title_removed.lower().split(' ')
+        title_prepare = prepare_words(words=title_removed_arr)
+        title_normal_forms = get_words_normal_form(words=title_prepare)
 
-        bbbb = aaaaaaaaaa + aaaaaaaaa_2
-        aaaaaaaaaa_removed = remove_all_in_title(text=bbbb, dop=[])
-        print(aaaaaaaaaa_removed)
+        union = make_union_arr(arr_1=assotiation_for_opis_plus_title, arr_2=title_normal_forms)
+        print(title, union)
 
-        similarity = check_similarity(aaaaaaaaaa_removed, title_removed)
-        # print( title_removed, similarity)
-        # jaccard = check_jaccard(aaaaaaaaaa.split(' '), title.split(' '))
-        # print(jaccard)
 
-        if similarity < percent_similarity:
+        if len(union) == 0:
             not_tema_arr.append(elem)
         else:
             tema_arr.append(elem)

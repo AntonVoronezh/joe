@@ -1,7 +1,6 @@
 import os
 
-from get_path import tgstat_folder_name
-from helpers.shared.check_similarity import check_similarity, check_jaccard
+from helpers.shared.words.check_similarity import check_similarity
 from helpers.shared.get_arr_from_txt_file import get_arr_from_txt_file
 
 
@@ -28,7 +27,7 @@ def title_history_interp(folder_path, folder, text_name):
             current_title = title
 
         text_out += f'<p class="items">{i+1}. {title} ({data}) <p>'
-        similarity = check_similarity(current_title, title)
+        # similarity = check_similarity(current_title, title)
         # jaccard = check_jaccard(current_title.split(' '), title.split(' '))
         # print(title, f'схожесть стекущим {similarity}')
 

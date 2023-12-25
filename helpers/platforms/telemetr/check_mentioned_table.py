@@ -2209,4 +2209,3 @@ def check_mentioned_table(driver, result_out_path):
         for line in data:
             add_more_line_in_txt_file(line=line, folder_path=result_platform_in_chanel_path, file_name=file_name)
 
-# check_mentioned_table()

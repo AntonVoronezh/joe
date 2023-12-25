@@ -5,7 +5,7 @@ from colorama import Fore
 from selenium.webdriver.common.by import By
 
 from get_path import check_title_str, make_platform_in_chanel_dir, telemetr_folder_name
-from helpers.shared.check_similarity import check_similarity
+from helpers.shared.words.check_similarity import check_similarity
 from helpers.shared.save_screen_with_sign import save_screen_with_sign
 from settings import is_telemetr_save_screenshot, is_telemetr_check_title_history
 from helpers.shared.save_in_txt_file import add_more_line_in_txt_file

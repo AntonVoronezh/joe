@@ -53,6 +53,7 @@ def make_platform_in_chanel_dir(result_out_path, platform_name):
     return platform_result_out_path
 
 
+total_info_str = 'total_info'
 red_line_str = 'red_line'
 check_title_str = 'check_title'
 mentioned_table_str = 'mentioned_table'
