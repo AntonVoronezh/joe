@@ -16,3 +16,12 @@ def remove_all_in_title(text, dop):
     conv_text_el = conv_text(text_podg)
     out = ''.join(conv_text_el)
     return out
+
+def remove_all_except_ru_text(text, dop):
+    en = set('ёйцукенгшщзхъэждлорпавыфячсмитьбю')
+    for el in dop:
+        en.add(el)
+    conv_text = lambda mas_in: [''.join([j for j in i if j.lower() in en]) for i in mas_in]
+    conv_text_el = conv_text(text)
+    out = ''.join(conv_text_el)
+    return out

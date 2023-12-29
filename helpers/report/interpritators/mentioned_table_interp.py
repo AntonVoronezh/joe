@@ -87,7 +87,6 @@ def mentioned_table_interp(folder_path, folder, text_name):
         title_normal_forms = get_words_normal_form(words=title_prepare)
 
         union = make_union_arr(arr_1=assotiation_for_opis_plus_title, arr_2=title_normal_forms)
-        print(title, union)
 
 
         if len(union) == 0:

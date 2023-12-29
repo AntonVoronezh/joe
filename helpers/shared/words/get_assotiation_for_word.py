@@ -2,12 +2,8 @@ from bs4 import BeautifulSoup
 import fake_useragent
 import requests
 
-from helpers.shared.words.get_morfology_word import get_words_normal_form
-
-
 def get_one_assotiation_for_word(word):
     url = f'https://kartaslov.ru/ассоциации-к-слову/{word.strip()}'
-    print(222, word)
     ua = fake_useragent.UserAgent()
     fake_ua = {'user-agent': ua.random}
     response = requests.get(url=url, headers=fake_ua)

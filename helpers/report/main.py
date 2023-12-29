@@ -15,7 +15,8 @@ from helpers.report.interpritators.red_line_interp import red_line_interp
 from helpers.report.interpritators.title_history_interp import title_history_interp
 from helpers.shared.get_arr_from_txt_file import get_arr_from_txt_file
 
-random_id = 'str(uuid.uuid4())'
+# random_id = 'str(uuid.uuid4())'
+random_id = 'psychology'
 channel_names = get_arr_from_txt_file(file_path=result_path, file_name='channel_names')
 def make_report():
     for channel_name in channel_names:
@@ -25,17 +26,17 @@ def make_report():
 
         handle_page_title(dst_template=dst_template, channel_name=channel_name)
 
-        # # red_line
-        # cards_red_line_arr = get_cards(random_id=random_id, folder_path=folder_path, channel_name=channel_name, block_name=red_line_str,
-        #                       section_name=section_name_red_line, interp=red_line_interp)
-        # handle_block(dst_template=dst_template, section_name=section_name_red_line, tag_name=red_line_tag, cards_arr=cards_red_line_arr)
-        #
-        #
-        # # title_history
-        # cards_title_history_arr = get_cards(random_id=random_id, folder_path=folder_path, channel_name=channel_name, block_name=check_title_str,
-        #                                section_name=section_name_title_history, interp=title_history_interp)
-        # handle_block(dst_template=dst_template, section_name=section_name_title_history, tag_name=title_history_tag,
-        #              cards_arr=cards_title_history_arr)
+        # red_line
+        cards_red_line_arr = get_cards(random_id=random_id, folder_path=folder_path, channel_name=channel_name, block_name=red_line_str,
+                              section_name=section_name_red_line, interp=red_line_interp)
+        handle_block(dst_template=dst_template, section_name=section_name_red_line, tag_name=red_line_tag, cards_arr=cards_red_line_arr)
+
+
+        # title_history
+        cards_title_history_arr = get_cards(random_id=random_id, folder_path=folder_path, channel_name=channel_name, block_name=check_title_str,
+                                       section_name=section_name_title_history, interp=title_history_interp)
+        handle_block(dst_template=dst_template, section_name=section_name_title_history, tag_name=title_history_tag,
+                     cards_arr=cards_title_history_arr)
 
 
         # mentioned_table
@@ -64,5 +65,5 @@ def make_index():
 
 
 
-make_report()
+# make_report()
 # make_index()
